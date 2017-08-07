@@ -53,8 +53,7 @@ pipeline {
 		
 		failure {
             echo 'I failed :('
-			mail
-			from: 'nguyenhoangthach28@gmail.com',
+			mail from: 'nguyenhoangthach28@gmail.com',
 			replyTo: 'fetel931408@gmail.com',
 			to: 'nhoangthach@tma.com.vn',
             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
