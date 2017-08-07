@@ -45,5 +45,12 @@ pipeline {
             archive 'build/libs/**/*.jar'
             junit 'build/reports/**/*.xml'
         }
+		
+		failure {
+            echo 'I failed :('
+			mail to: 'nhoangthach@tma.com.vn',
+             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+             body: "Something is wrong with ${env.BUILD_URL}"
+        }
     }
 }
