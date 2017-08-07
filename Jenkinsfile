@@ -38,19 +38,27 @@ pipeline {
 				bat 'mvn test'
             }
         }
+		
+		stage('Deploy - Production') {
+            steps {
+                sh './deploy production'
+            }
+        }
     }
 	
 	post {
         always {
-            archive 'build/libs/**/*.jar'
-            junit 'build/reports/**/*.xml'
+            archive 'target/*.jar'
         }
 		
 		failure {
             echo 'I failed :('
-			mail to: 'nhoangthach@tma.com.vn',
-             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Something is wrong with ${env.BUILD_URL}"
+			mail
+			from: 'nguyenhoangthach28@gmail.com',
+			replyTo: 'fetel931408@gmail.com',
+			to: 'nhoangthach@tma.com.vn',
+            subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+            body: "Something is wrong with ${env.BUILD_URL}"
         }
     }
 }
