@@ -24,6 +24,13 @@ pipeline {
 				bat 'mvn clean compile'
             }
         }
+		
+		stage ('Build Stage') {
+
+            steps {
+				bat 'mvn clean install'
+            }
+        }
 
         stage ('Testing Stage') {
 
@@ -31,12 +38,12 @@ pipeline {
 				bat 'mvn test'
             }
         }
-
-
-        stage ('Deployment Stage') {
-            steps {
-				bat 'mvn deploy'
-            }
+    }
+	
+	post {
+        always {
+            archive 'build/libs/**/*.jar'
+            junit 'build/reports/**/*.xml'
         }
     }
 }
