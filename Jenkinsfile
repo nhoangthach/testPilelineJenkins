@@ -38,17 +38,11 @@ pipeline {
 				bat 'mvn test'
             }
         }
-		
-		stage('Deploy Stage') {
-            steps {
-                sh 'mvn deploy'
-            }
-        }
     }
 	
 	post {
         always {
-            archive 'target/*.jar'
+			archive 'build/libs/**/*.jar'
         }
 		
 		failure {
