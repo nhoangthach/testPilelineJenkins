@@ -39,9 +39,9 @@ pipeline {
             }
         }
 		
-		stage('Deploy - Production') {
+		stage('Deploy Stage) {
             steps {
-                sh './deploy production'
+                sh 'mvn deploy'
             }
         }
     }
