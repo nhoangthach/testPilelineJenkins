@@ -42,7 +42,7 @@ pipeline {
 	
 	post {
         always {
-			archive 'build/libs/**/*.jar'
+			archive 'target/*.jar'
         }
 		
 		failure {
